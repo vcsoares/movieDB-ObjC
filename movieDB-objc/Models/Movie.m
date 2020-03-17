@@ -14,12 +14,12 @@
     self = [super init];
     
     if (self) {
-        self.uid = uid;
-        self.name = name;
-        self.synopsis = synopsis;
+        self.id = uid;
+        self.title = name;
+        self.overview = synopsis;
         self.genres = genres;
-        self.rating = rating;
-        self.picture = picture;
+        self.vote_average = rating;
+        self.poster_path = picture;
     }
     
     return self;

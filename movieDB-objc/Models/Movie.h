@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Movie : NSObject
 
-@property NSNumber* uid;
+@property NSNumber* id;
 
-@property NSString* name;
-@property NSString* synopsis;
+@property NSString* title;
+@property NSString* overview;
 @property NSString* genres;
-@property NSNumber* rating;
-@property NSURL* picture;
+@property NSNumber* vote_average;
+@property NSURL* poster_path;
 
 -(instancetype)initWithId:(NSNumber*) uid name:(NSString*) name synopsis:(NSString*) synopsis genres:(NSString*) genres rating:(NSNumber*) rating picture:(NSURL*) picture;
 
