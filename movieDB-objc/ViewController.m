@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Communicator.h"
 #import "CommunicatorDelegate.h"
+#import "Parser.h"
 
 @interface ViewController () <CommunicatorDelegate>
 
@@ -35,6 +36,9 @@
 - (void)receivedMovieList:(nonnull NSData *)json {
     NSLog(@"-VVV- FETCH SUCCESS");
     NSLog(json.description);
+    
+    NSError* error = nil;
+    NSArray* movies = [Parser movieListFromJSON:json error:&error];
 }
 
 @end

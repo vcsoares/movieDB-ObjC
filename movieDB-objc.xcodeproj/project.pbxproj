@@ -16,6 +16,7 @@
 		A9E5D1FA241FFBF40011F151 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D1F9241FFBF40011F151 /* main.m */; };
 		A9E5D20A242013810011F151 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D209242013810011F151 /* Movie.m */; };
 		A9E5D20E242154450011F151 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D20D242154450011F151 /* Communicator.m */; };
+		A9E5D21124216CF90011F151 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D21024216CF90011F151 /* Parser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunicatorDelegate.h; sourceTree = "<group>"; };
 		A9E5D20C242154450011F151 /* Communicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
 		A9E5D20D242154450011F151 /* Communicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
+		A9E5D20F24216CF90011F151 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		A9E5D21024216CF90011F151 /* Parser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */,
 				A9E5D20C242154450011F151 /* Communicator.h */,
 				A9E5D20D242154450011F151 /* Communicator.m */,
+				A9E5D20F24216CF90011F151 /* Parser.h */,
+				A9E5D21024216CF90011F151 /* Parser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				A9E5D1E9241FFBF00011F151 /* AppDelegate.m in Sources */,
 				A9E5D20A242013810011F151 /* Movie.m in Sources */,
 				A9E5D1FA241FFBF40011F151 /* main.m in Sources */,
+				A9E5D21124216CF90011F151 /* Parser.m in Sources */,
 				A9E5D1EC241FFBF00011F151 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
