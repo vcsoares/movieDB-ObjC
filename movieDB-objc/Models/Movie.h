@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSNumber* rating;
 @property NSURL* picture;
 
+-(instancetype)initWithId:(NSNumber*) uid name:(NSString*) name synopsis:(NSString*) synopsis genres:(NSString*) genres rating:(NSNumber*) rating picture:(NSURL*) picture;
+
 @end
 
 NS_ASSUME_NONNULL_END

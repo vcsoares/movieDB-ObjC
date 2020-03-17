@@ -10,4 +10,19 @@
 
 @implementation Movie
 
+-(instancetype)initWithId:(NSNumber*) uid name:(NSString*) name synopsis:(NSString*) synopsis genres:(NSString*) genres rating:(NSNumber*) rating picture:(NSURL*) picture {
+    self = [super init];
+    
+    if (self) {
+        self.uid = uid;
+        self.name = name;
+        self.synopsis = synopsis;
+        self.genres = genres;
+        self.rating = rating;
+        self.picture = picture;
+    }
+    
+    return self;
+}
+
 @end
