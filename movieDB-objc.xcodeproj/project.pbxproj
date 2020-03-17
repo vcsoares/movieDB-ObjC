@@ -32,6 +32,7 @@
 		A9E5D1F9241FFBF40011F151 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A9E5D208242013810011F151 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		A9E5D209242013810011F151 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunicatorDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		A9E5D200242004F40011F151 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
