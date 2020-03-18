@@ -15,7 +15,7 @@
 
 +(NSArray*)movieListFromJSON:(NSData*) json error:(NSError**) error {
     NSError *error_buffer = nil;
-    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error_buffer];
+    NSDictionary *parsed_object = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error_buffer];
     
     if (error_buffer != nil) {
         *error = error_buffer;
@@ -24,7 +24,7 @@
     
     NSMutableArray *movies = [[NSMutableArray alloc] init];
     
-    NSArray *results = [parsedObject valueForKey:@"results"];
+    NSArray *results = [parsed_object valueForKey:@"results"];
     NSLog(@"Count %d", (int)results.count);
     
     for (NSDictionary *movie_dict in results) {

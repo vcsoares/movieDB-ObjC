@@ -33,18 +33,18 @@
 
 - (void)fetchMovieListFailedWithError:(nonnull NSError *)error {
     NSLog(@"-XXX- FETCH FAILED");
-    NSLog(error.localizedDescription);
+    NSLog(@"%@", error.localizedDescription);
 }
 
 - (void)receivedMovieList:(nonnull NSData *)json from:(FetchOption) option {
-    NSLog(json.description);
+    NSLog(@"%@", json.description);
     
     NSError* error = nil;
     NSArray* movies = [Parser movieListFromJSON:json error:&error];
     
     if (error) {
         NSLog(@"-XXX- PARSE ERROR");
-        NSLog(error.localizedDescription);
+        NSLog(@"%@", error.localizedDescription);
         return;
     }
     
