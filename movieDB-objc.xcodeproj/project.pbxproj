@@ -15,6 +15,7 @@
 		A9E5D1F7241FFBF40011F151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E5D1F5241FFBF40011F151 /* LaunchScreen.storyboard */; };
 		A9E5D1FA241FFBF40011F151 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D1F9241FFBF40011F151 /* main.m */; };
 		A9E5D20A242013810011F151 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D209242013810011F151 /* Movie.m */; };
+		A9E5D2142422B2970011F151 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D2132422B2970011F151 /* Genre.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		A9E5D1F9241FFBF40011F151 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A9E5D208242013810011F151 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		A9E5D209242013810011F151 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A9E5D2122422B2970011F151 /* Genre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Genre.h; sourceTree = "<group>"; };
+		A9E5D2132422B2970011F151 /* Genre.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 			children = (
 				A9E5D208242013810011F151 /* Movie.h */,
 				A9E5D209242013810011F151 /* Movie.m */,
+				A9E5D2122422B2970011F151 /* Genre.h */,
+				A9E5D2132422B2970011F151 /* Genre.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				A9E5D1EF241FFBF00011F151 /* ViewController.m in Sources */,
 				A9E5D1E9241FFBF00011F151 /* AppDelegate.m in Sources */,
 				A9E5D20A242013810011F151 /* Movie.m in Sources */,
+				A9E5D2142422B2970011F151 /* Genre.m in Sources */,
 				A9E5D1FA241FFBF40011F151 /* main.m in Sources */,
 				A9E5D1EC241FFBF00011F151 /* SceneDelegate.m in Sources */,
 			);
