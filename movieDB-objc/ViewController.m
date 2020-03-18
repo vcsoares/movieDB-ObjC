@@ -14,6 +14,8 @@
 @interface ViewController () <CommunicatorDelegate>
 
 @property Communicator* communicator;
+@property NSArray* popularMovieList;
+@property NSArray* nowPlayingMovieList;
 
 @end
 
@@ -24,7 +26,8 @@
     // Do any additional setup after loading the view.
     self.communicator = [[Communicator alloc] init];
     self.communicator.delegate = self;
-    [self.communicator fetchMovieList];
+    [self.communicator fetchMovieList:FetchPopular];
+    [self.communicator fetchMovieList:FetchNowPlaying];
 }
 
 
@@ -33,12 +36,29 @@
     NSLog(error.localizedDescription);
 }
 
-- (void)receivedMovieList:(nonnull NSData *)json {
-    NSLog(@"-VVV- FETCH SUCCESS");
+- (void)receivedMovieList:(nonnull NSData *)json from:(FetchOption) option {
     NSLog(json.description);
     
     NSError* error = nil;
     NSArray* movies = [Parser movieListFromJSON:json error:&error];
+    
+    if (error) {
+        NSLog(@"-XXX- PARSE ERROR");
+        NSLog(error.localizedDescription);
+        return;
+    }
+    
+    switch (option) {
+        case FetchPopular:
+            NSLog(@"-VVV- FETCH POPULAR SUCCESS");
+            self.popularMovieList = movies;
+            break;
+            
+        default:
+            NSLog(@"-VVV- FETCH NOW PLAYING SUCCESS");
+            self.nowPlayingMovieList = movies;
+            break;
+    }
 }
 
 @end
