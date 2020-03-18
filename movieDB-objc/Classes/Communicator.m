@@ -10,11 +10,24 @@
 #import "CommunicatorDelegate.h"
 
 #define API_KEY @"f0fe433e69bcdce6b29dcd66e5661af9"
+#define NOW_PLAYING_URL @"https://api.themoviedb.org/3/movie/now_playing?api_key=%@"
+#define POPULAR_URL @"https://api.themoviedb.org/3/movie/popular?api_key=%@"
 
 @implementation Communicator
 
--(void)fetchMovieList {
-    NSString *urlAsString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/now_playing?api_key=%@", API_KEY];
+-(void)fetchMovieList:(FetchOption)option {
+    NSString *urlAsString;
+    
+    switch (option) {
+        case FetchPopular:
+            urlAsString = [NSString stringWithFormat:POPULAR_URL, API_KEY];
+            break;
+            
+        default:
+            urlAsString = [NSString stringWithFormat:NOW_PLAYING_URL, API_KEY];
+            break;
+    }
+
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"%@", urlAsString);
     
@@ -28,10 +41,11 @@
                 [self.delegate fetchMovieListFailedWithError:error];
             } else {
                 NSLog(@"--V-- FETCH SUCCESS");
-                [self.delegate receivedMovieList:data];
+                [self.delegate receivedMovieList:data from:option];
             }
         }];
 
     [task resume];
 }
+
 @end

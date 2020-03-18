@@ -14,8 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Communicator : NSObject
 
+typedef NS_ENUM(NSInteger, FetchOption) {
+    FetchNowPlaying,
+    FetchPopular,
+};
+
 @property (weak, nonatomic) id delegate;
--(void)fetchMovieList;
+-(void)fetchMovieList:(FetchOption)option;
 
 @end
 
