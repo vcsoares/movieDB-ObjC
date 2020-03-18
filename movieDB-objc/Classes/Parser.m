@@ -48,4 +48,27 @@
     return movies;
 }
 
++(void)detailsForMovie:(Movie*) movie from:(NSData*) json error:(NSError**) error {
+    NSError *error_buffer = nil;
+    NSDictionary *parsed_object = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error_buffer];
+    
+    if (error_buffer != nil) {
+        *error = error_buffer;
+        return;
+    }
+    
+    NSArray* results = [parsed_object valueForKey:@"genres"];
+    NSString* genre_string = [NSString string];
+    
+    for (NSDictionary *genre_dict in results) {
+        genre_string = [genre_string stringByAppendingFormat:@"%@, ", [genre_dict valueForKey:@"name"]];
+    }
+    
+    // Remove trailing ", " separator from string
+    genre_string = [genre_string substringToIndex:[genre_string length] - 2];
+    NSLog(@"%@", genre_string);
+    
+    movie.genres = genre_string;
+}
+
 @end

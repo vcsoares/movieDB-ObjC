@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Movie.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +21,9 @@ typedef NS_ENUM(NSInteger, FetchOption) {
 };
 
 @property (weak, nonatomic) id delegate;
+
 -(void)fetchMovieList:(FetchOption)option;
+-(void)fetchMovieDetails:(Movie*)movie;
 
 @end
 

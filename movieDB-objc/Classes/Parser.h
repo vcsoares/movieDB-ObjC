@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Movie.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Parser : NSObject
 
 +(NSArray*)movieListFromJSON:(NSData*) json error:(NSError**) error;
++(void)detailsForMovie:(Movie*) movie from:(NSData*) json error:(NSError**) error;
 
 @end
 

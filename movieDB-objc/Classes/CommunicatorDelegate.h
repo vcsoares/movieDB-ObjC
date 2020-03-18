@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CommunicatorDelegate <NSObject>
 
 -(void)receivedMovieList:(NSData*) json from:(FetchOption) option;
--(void)fetchMovieListFailedWithError:(NSError*) error;
+-(void)receivedMovieDetails:(NSData*) json for:(Movie*) movie;
+-(void)fetchFailedWithError:(NSError*) error;
 
 @end
 

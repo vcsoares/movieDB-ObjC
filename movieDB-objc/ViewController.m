@@ -10,6 +10,7 @@
 #import "Communicator.h"
 #import "CommunicatorDelegate.h"
 #import "Parser.h"
+#import "Movie.h"
 
 @interface ViewController () <CommunicatorDelegate>
 
@@ -31,7 +32,7 @@
 }
 
 
-- (void)fetchMovieListFailedWithError:(nonnull NSError *)error {
+- (void)fetchFailedWithError:(nonnull NSError *)error {
     NSLog(@"-XXX- FETCH FAILED");
     NSLog(@"%@", error.localizedDescription);
 }
@@ -57,8 +58,16 @@
         default:
             NSLog(@"-VVV- FETCH NOW PLAYING SUCCESS");
             self.nowPlayingMovieList = movies;
+            Movie* movie = self.nowPlayingMovieList[0];
+            [self.communicator fetchMovieDetails:movie];
             break;
     }
+}
+
+- (void)receivedMovieDetails:(nonnull NSData *)json for:(nonnull Movie *)movie {
+    NSError* error = nil;
+    [Parser detailsForMovie:movie from:json error:&error];
+    NSLog(@"%@",movie.description);
 }
 
 @end
