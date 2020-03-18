@@ -9,9 +9,11 @@
 #import "Parser.h"
 #import "Movie.h"
 
+#define BASE_IMG_URL @"https://image.tmdb.org/t/p/w500"
+
 @implementation Parser
 
-+(NSArray *)movieListFromJSON:(NSData*) json error:(NSError**) error {
++(NSArray*)movieListFromJSON:(NSData*) json error:(NSError**) error {
     NSError *error_buffer = nil;
     NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error_buffer];
     
@@ -30,7 +32,13 @@
         
         for (NSString *key in movie_dict) {
             if ([movie respondsToSelector:NSSelectorFromString(key)]) {
-                [movie setValue:[movie_dict valueForKey:key] forKey:key];
+                if ([key isEqualToString:@"poster_path"]) {
+                    NSString* pictureURL = [BASE_IMG_URL stringByAppendingString:[movie_dict valueForKey:key]];
+                    NSLog(@"--!-- PICTURE URL: %@", pictureURL);
+                    [movie setValue:pictureURL forKey:key];
+                } else {
+                    [movie setValue:[movie_dict valueForKey:key] forKey:key];
+                }
             }
         }
         

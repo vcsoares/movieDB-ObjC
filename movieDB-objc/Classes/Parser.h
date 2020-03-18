@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Parser : NSObject
 
-+(NSArray *)movieListFromJSON:(NSData*) json error:(NSError**) error;
++(NSArray*)movieListFromJSON:(NSData*) json error:(NSError**) error;
 
 @end
 
