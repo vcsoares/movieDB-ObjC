@@ -35,6 +35,9 @@
     
     self.moviesTableView.delegate = self;
     self.moviesTableView.dataSource = self;
+    
+    UISearchController* search_controller = [[UISearchController alloc] init];
+    self.navigationItem.searchController = search_controller;
 }
 
 #pragma mark - Communicator Delegate
