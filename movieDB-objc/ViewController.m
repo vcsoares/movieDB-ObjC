@@ -99,26 +99,7 @@
     }
     
     if (movie != nil) {
-        [cell.movieTitleLabel setText:movie.title];
-        [cell.movieOverviewLabel setText:movie.overview];
-        
-        NSMutableAttributedString* rating = [[NSMutableAttributedString alloc] initWithString:movie.vote_average.stringValue];
-        
-        NSTextAttachment* rating_symbol = [NSTextAttachment textAttachmentWithImage:[UIImage systemImageNamed:@"star"]];
-        NSAttributedString* rating_symbol_str = [NSAttributedString attributedStringWithAttachment:rating_symbol];
-        [rating replaceCharactersInRange:NSMakeRange(0, 0) withAttributedString:rating_symbol_str];
-        
-        [cell.movieRatingLabel setAttributedText:rating];
-        
-        NSURLSessionDownloadTask* poster_download = [[NSURLSession sharedSession] downloadTaskWithURL:movie.poster_path completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            UIImage* poster = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [cell.movieImageView setImage:poster];
-            });
-        }];
-        
-        [poster_download resume];
+        [cell populateCellWithMovie:movie];
     }
     
     return cell;

@@ -10,12 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class Movie;
 @interface MovieTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *movieImageView;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieOverviewLabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieRatingLabel;
+
+-(void)populateCellWithMovie:(Movie*)movie;
 
 @end
 
