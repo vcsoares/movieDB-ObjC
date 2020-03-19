@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Movie.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class Movie;
 
 @interface Parser : NSObject
 

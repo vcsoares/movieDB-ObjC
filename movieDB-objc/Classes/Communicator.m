@@ -8,6 +8,7 @@
 
 #import "Communicator.h"
 #import "CommunicatorDelegate.h"
+#import "Movie.h"
 
 #define API_KEY @"f0fe433e69bcdce6b29dcd66e5661af9"
 #define NOW_PLAYING_URL @"https://api.themoviedb.org/3/movie/now_playing?api_key=%@"
