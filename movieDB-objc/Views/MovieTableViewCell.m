@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.movieImageView.layer setCornerRadius:10];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

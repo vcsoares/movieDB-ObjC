@@ -28,13 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.moviesTableView.delegate = self;
-    self.moviesTableView.dataSource = self;
-    
     self.communicator = [[Communicator alloc] init];
     self.communicator.delegate = self;
     [self.communicator fetchMovieList:FetchPopular];
     [self.communicator fetchMovieList:FetchNowPlaying];
+    
+    self.moviesTableView.delegate = self;
+    self.moviesTableView.dataSource = self;
 }
 
 #pragma mark - Communicator Delegate
@@ -98,9 +98,21 @@
             break;
     }
     
-    [cell.movieTitleLabel setText:movie.title];
-    [cell.movieOverviewLabel setText:movie.overview];
-    [cell.movieRatingLabel setText:movie.vote_average.stringValue];
+    if (movie != nil) {
+        [cell.movieTitleLabel setText:movie.title];
+        [cell.movieOverviewLabel setText:movie.overview];
+        [cell.movieRatingLabel setText:movie.vote_average.stringValue];
+        
+        NSURLSessionDownloadTask* poster_download = [[NSURLSession sharedSession] downloadTaskWithURL:movie.poster_path completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            UIImage* poster = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [cell.movieImageView setImage:poster];
+            });
+        }];
+        
+        [poster_download resume];
+    }
     
     return cell;
 }
