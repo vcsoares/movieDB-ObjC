@@ -14,6 +14,10 @@
 		A9E5D1F4241FFBF40011F151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9E5D1F3241FFBF40011F151 /* Assets.xcassets */; };
 		A9E5D1F7241FFBF40011F151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E5D1F5241FFBF40011F151 /* LaunchScreen.storyboard */; };
 		A9E5D1FA241FFBF40011F151 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D1F9241FFBF40011F151 /* main.m */; };
+		A9E5D20A242013810011F151 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D209242013810011F151 /* Movie.m */; };
+		A9E5D2142422B2970011F151 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D2132422B2970011F151 /* Genre.m */; };
+		A9E5D20E242154450011F151 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D20D242154450011F151 /* Communicator.m */; };
+		A9E5D21124216CF90011F151 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D21024216CF90011F151 /* Parser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,15 @@
 		A9E5D1F6241FFBF40011F151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9E5D1F8241FFBF40011F151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9E5D1F9241FFBF40011F151 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A9E5D208242013810011F151 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		A9E5D209242013810011F151 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A9E5D2122422B2970011F151 /* Genre.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Genre.h; sourceTree = "<group>"; };
+		A9E5D2132422B2970011F151 /* Genre.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
+		A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunicatorDelegate.h; sourceTree = "<group>"; };
+		A9E5D20C242154450011F151 /* Communicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
+		A9E5D20D242154450011F151 /* Communicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
+		A9E5D20F24216CF90011F151 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		A9E5D21024216CF90011F151 /* Parser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +74,8 @@
 		A9E5D1E6241FFBF00011F151 /* movieDB-objc */ = {
 			isa = PBXGroup;
 			children = (
+				A9E5D201242012510011F151 /* Models */,
+				A9E5D200242004F40011F151 /* Classes */,
 				A9E5D1E7241FFBF00011F151 /* AppDelegate.h */,
 				A9E5D1E8241FFBF00011F151 /* AppDelegate.m */,
 				A9E5D1EA241FFBF00011F151 /* SceneDelegate.h */,
@@ -74,6 +89,29 @@
 				A9E5D1F9241FFBF40011F151 /* main.m */,
 			);
 			path = "movieDB-objc";
+			sourceTree = "<group>";
+		};
+		A9E5D200242004F40011F151 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5D20B242153CE0011F151 /* CommunicatorDelegate.h */,
+				A9E5D20C242154450011F151 /* Communicator.h */,
+				A9E5D20D242154450011F151 /* Communicator.m */,
+				A9E5D20F24216CF90011F151 /* Parser.h */,
+				A9E5D21024216CF90011F151 /* Parser.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A9E5D201242012510011F151 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A9E5D208242013810011F151 /* Movie.h */,
+				A9E5D209242013810011F151 /* Movie.m */,
+				A9E5D2122422B2970011F151 /* Genre.h */,
+				A9E5D2132422B2970011F151 /* Genre.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9E5D20E242154450011F151 /* Communicator.m in Sources */,
 				A9E5D1EF241FFBF00011F151 /* ViewController.m in Sources */,
 				A9E5D1E9241FFBF00011F151 /* AppDelegate.m in Sources */,
+				A9E5D20A242013810011F151 /* Movie.m in Sources */,
+				A9E5D2142422B2970011F151 /* Genre.m in Sources */,
 				A9E5D1FA241FFBF40011F151 /* main.m in Sources */,
+				A9E5D21124216CF90011F151 /* Parser.m in Sources */,
 				A9E5D1EC241FFBF00011F151 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
