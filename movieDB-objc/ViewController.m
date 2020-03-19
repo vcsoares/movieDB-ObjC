@@ -37,7 +37,7 @@
     [self.communicator fetchMovieList:FetchNowPlaying];
 }
 
-
+#pragma mark - Communicator Delegate
 - (void)fetchFailedWithError:(nonnull NSError *)error {
     NSLog(@"-XXX- FETCH FAILED");
     NSLog(@"%@", error.localizedDescription);
@@ -64,8 +64,6 @@
         default:
             NSLog(@"-VVV- FETCH NOW PLAYING SUCCESS");
             self.nowPlayingMovieList = movies;
-            Movie* movie = self.nowPlayingMovieList[0];
-            [self.communicator fetchMovieDetails:movie];
             break;
     }
     
@@ -80,7 +78,7 @@
     NSLog(@"%@",movie.description);
 }
 
-#pragma mark - Table View Data Source -
+#pragma mark - Table View Data Source
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
@@ -115,7 +113,7 @@
     switch (section) {
         case 0:
             NSLog(@"-!!!- SECTION: POPULAR --- COUNT: %d", (int)self.popularMovieList.count);
-            return self.popularMovieList.count;
+            return 2;
             break;
             
         default:
@@ -125,18 +123,32 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+#pragma mark - Table View Section Headers
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 22)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, tableView.frame.size.width, 22)];
+    
+    [label setFont:[UIFont systemFontOfSize:17 weight:UIFontWeightSemibold]];
+    
     switch (section) {
         case 0:
             NSLog(@"-!!!- SECTION: POPULAR");
-            return @"Popular movies";
+            [label setText:@"Popular movies"];
             break;
             
         default:
             NSLog(@"-!!!- SECTION: NOW PLAYING");
-            return @"Now playing";
+            [label setText:@"Now playing"];
             break;
     }
+    
+    [header addSubview:label];
+    
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 22;
 }
 
 @end
