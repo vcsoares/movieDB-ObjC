@@ -11,12 +11,15 @@
 #import "CommunicatorDelegate.h"
 #import "Parser.h"
 #import "Movie.h"
+#import "MovieTableViewCell.h"
 
-@interface ViewController () <CommunicatorDelegate>
+@interface ViewController () <CommunicatorDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property Communicator* communicator;
 @property NSArray* popularMovieList;
 @property NSArray* nowPlayingMovieList;
+
+@property (weak, nonatomic) IBOutlet UITableView *moviesTableView;
 
 @end
 
@@ -24,14 +27,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.communicator = [[Communicator alloc] init];
     self.communicator.delegate = self;
     [self.communicator fetchMovieList:FetchPopular];
     [self.communicator fetchMovieList:FetchNowPlaying];
+    
+    self.moviesTableView.delegate = self;
+    self.moviesTableView.dataSource = self;
+    
+    UISearchController* search_controller = [[UISearchController alloc] init];
+    self.navigationItem.searchController = search_controller;
 }
 
-
+#pragma mark - Communicator Delegate
 - (void)fetchFailedWithError:(nonnull NSError *)error {
     NSLog(@"-XXX- FETCH FAILED");
     NSLog(@"%@", error.localizedDescription);
@@ -58,16 +67,95 @@
         default:
             NSLog(@"-VVV- FETCH NOW PLAYING SUCCESS");
             self.nowPlayingMovieList = movies;
-            Movie* movie = self.nowPlayingMovieList[0];
-            [self.communicator fetchMovieDetails:movie];
             break;
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.moviesTableView reloadData];
+    });
 }
 
 - (void)receivedMovieDetails:(nonnull NSData *)json for:(nonnull Movie *)movie {
     NSError* error = nil;
     [Parser detailsForMovie:movie from:json error:&error];
     NSLog(@"%@",movie.description);
+}
+
+#pragma mark - Table View Data Source
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    MovieTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
+    if (cell == nil) {
+        return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"default"];
+    }
+     
+    Movie* movie;
+    
+    switch (indexPath.section) {
+        case 0:
+            movie = self.popularMovieList[indexPath.row];
+            break;
+            
+        default:
+            movie = self.nowPlayingMovieList[indexPath.row];
+            break;
+    }
+    
+    if (movie != nil) {
+        [cell populateCellWithMovie:movie];
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 148;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            NSLog(@"-!!!- SECTION: POPULAR --- COUNT: %d", (int)self.popularMovieList.count);
+            return 2;
+            break;
+            
+        default:
+            NSLog(@"-!!!- SECTION: NOW PLAYING --- COUNT: %d", (int)self.nowPlayingMovieList.count);
+            return self.nowPlayingMovieList.count;
+            break;
+    }
+}
+
+#pragma mark - Table View Section Headers
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 22;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 22)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, tableView.frame.size.width, 22)];
+    
+    [label setFont:[UIFont systemFontOfSize:17 weight:UIFontWeightSemibold]];
+    
+    switch (section) {
+        case 0:
+            NSLog(@"-!!!- SECTION: POPULAR");
+            [label setText:@"Popular movies"];
+            break;
+            
+        default:
+            NSLog(@"-!!!- SECTION: NOW PLAYING");
+            [label setText:@"Now playing"];
+            break;
+    }
+    
+    [header addSubview:label];
+    
+    return header;
 }
 
 @end

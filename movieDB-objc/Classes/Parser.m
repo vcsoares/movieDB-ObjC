@@ -35,7 +35,7 @@
                 if ([key isEqualToString:@"poster_path"]) {
                     NSString* pictureURL = [BASE_IMG_URL stringByAppendingString:[movie_dict valueForKey:key]];
                     NSLog(@"--!-- PICTURE URL: %@", pictureURL);
-                    [movie setValue:pictureURL forKey:key];
+                    [movie setValue:[NSURL URLWithString:pictureURL] forKey:key];
                 } else {
                     [movie setValue:[movie_dict valueForKey:key] forKey:key];
                 }
