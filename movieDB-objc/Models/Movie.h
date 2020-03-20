@@ -14,13 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property NSNumber* id;
 
+// The use of snake_case for property names reflects the way they are
+// named in TMDb's API. This allows for automatic JSON parsing.
 @property NSString* title;
 @property NSString* overview;
 @property NSString* genres;
 @property NSNumber* vote_average;
 @property NSURL* poster_path;
-
--(instancetype)initWithId:(NSNumber*) uid name:(NSString*) name synopsis:(NSString*) synopsis genres:(NSString*) genres rating:(NSNumber*) rating picture:(NSURL*) picture;
+@property NSData* poster;
 
 @end
 

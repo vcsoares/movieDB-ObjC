@@ -10,19 +10,4 @@
 
 @implementation Movie
 
--(instancetype)initWithId:(NSNumber*) uid name:(NSString*) name synopsis:(NSString*) synopsis genres:(NSString*) genres rating:(NSNumber*) rating picture:(NSURL*) picture {
-    self = [super init];
-    
-    if (self) {
-        self.id = uid;
-        self.title = name;
-        self.overview = synopsis;
-        self.genres = genres;
-        self.vote_average = rating;
-        self.poster_path = picture;
-    }
-    
-    return self;
-}
-
 @end

@@ -37,8 +37,8 @@
     self.moviesTableView.delegate = self;
     self.moviesTableView.dataSource = self;
     
-    UISearchController* search_controller = [[UISearchController alloc] init];
-    self.navigationItem.searchController = search_controller;
+    UISearchController* searchController = [[UISearchController alloc] init];
+    self.navigationItem.searchController = searchController;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

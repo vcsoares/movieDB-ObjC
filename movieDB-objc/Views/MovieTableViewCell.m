@@ -35,15 +35,20 @@
     
     [self.movieRatingLabel setAttributedText:rating];
     
-    NSURLSessionDownloadTask* poster_download = [[NSURLSession sharedSession] downloadTaskWithURL:movie.poster_path completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        UIImage* poster = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+    if (movie.poster != nil) {
+        [self.movieImageView setImage:[UIImage imageWithData:movie.poster]];
+    } else {
+        NSURLSessionDownloadTask* poster_download = [[NSURLSession sharedSession] downloadTaskWithURL:movie.poster_path completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [movie setPoster:[NSData dataWithContentsOfURL:location]];
+            UIImage* poster = [UIImage imageWithData:movie.poster];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.movieImageView setImage:poster];
+            });
+        }];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.movieImageView setImage:poster];
-        });
-    }];
-    
-    [poster_download resume];
+        [poster_download resume];
+    }
 }
 
 @end
