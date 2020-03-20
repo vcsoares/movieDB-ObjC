@@ -12,6 +12,7 @@
 #import "Parser.h"
 #import "Movie.h"
 #import "MovieTableViewCell.h"
+#import "DetailsViewController.h"
 
 @interface ViewController () <CommunicatorDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -38,6 +39,15 @@
     
     UISearchController* search_controller = [[UISearchController alloc] init];
     self.navigationItem.searchController = search_controller;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetailsViewController* detailsVC = [segue destinationViewController];
+    
+    if (detailsVC != nil && [sender isKindOfClass:[Movie class]]) {
+        [detailsVC loadViewIfNeeded];
+        [detailsVC setMovie:sender];
+    }
 }
 
 #pragma mark - Communicator Delegate
@@ -77,8 +87,18 @@
 
 - (void)receivedMovieDetails:(nonnull NSData *)json for:(nonnull Movie *)movie {
     NSError* error = nil;
+    
     [Parser detailsForMovie:movie from:json error:&error];
-    NSLog(@"%@",movie.description);
+    
+    if (error != nil) {
+        NSLog(@"-XXX- FETCH DETAILS ERROR");
+        NSLog(@"%@", error.localizedDescription);
+        return;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"ShowMovie" sender:movie];
+    });
 }
 
 #pragma mark - Table View Data Source
@@ -124,6 +144,26 @@
             return self.nowPlayingMovieList.count;
             break;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Movie* movie;
+    
+    switch (indexPath.section) {
+        case 0:
+            movie = self.popularMovieList[indexPath.row];
+            break;
+            
+        default:
+            movie = self.nowPlayingMovieList[indexPath.row];
+            break;
+    }
+    
+    if (movie != nil) {
+        [self.communicator fetchMovieDetails:movie];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Table View Section Headers
