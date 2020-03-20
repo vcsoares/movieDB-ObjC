@@ -162,6 +162,8 @@
     if (movie != nil) {
         [self.communicator fetchMovieDetails:movie];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Table View Section Headers
