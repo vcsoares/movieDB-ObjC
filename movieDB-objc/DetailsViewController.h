@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class Movie;
 @interface DetailsViewController : UIViewController
+
+@property (nonatomic) Movie* movie;
 
 @end
 
