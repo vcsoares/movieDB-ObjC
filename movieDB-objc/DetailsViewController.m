@@ -32,7 +32,7 @@
     [self.genresLabel setText:movie.genres];
     [self.overviewLabel setText:movie.overview];
     
-    NSMutableAttributedString* rating = [[NSMutableAttributedString alloc] initWithString:movie.vote_average.stringValue];
+    NSMutableAttributedString* rating = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f",[movie.vote_average doubleValue]]];
     
     NSTextAttachment* rating_symbol = [NSTextAttachment textAttachmentWithImage:[UIImage systemImageNamed:@"star"]];
     NSAttributedString* rating_symbol_str = [NSAttributedString attributedStringWithAttachment:rating_symbol];
