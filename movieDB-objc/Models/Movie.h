@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSString* genres;
 @property NSNumber* vote_average;
 @property NSURL* poster_path;
+@property NSData* poster;
 
 @end
 
