@@ -40,7 +40,9 @@ struct ContentView: View {
     @ObservedObject var storage = MovieStorage()
     
     var body: some View {
-        Text("Hello, World!")
+        List(storage.nowPlaying, id: \.self) { movie in
+            Text(movie.title)
+        }
     }
     
     init() {
