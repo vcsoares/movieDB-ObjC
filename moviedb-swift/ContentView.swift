@@ -41,12 +41,28 @@ struct ContentView: View {
     
     var body: some View {
         List(storage.nowPlaying, id: \.self) { movie in
-            Text(movie.title)
+            VStack(alignment: .leading, spacing: 10) {
+                Text(movie.title)
+                    .font(.system(size: 14))
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
+                Text(movie.overview)
+                    .font(.system(size: 13))
+                    .foregroundColor(Color.gray)
+                    .lineLimit(3)
+                HStack(alignment: .center, spacing: 5.0) {
+                    Image(systemName: "star")
+                        .foregroundColor(.gray)
+                    Text("\(movie.vote_average)")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.gray)
+                }
+            }
         }
     }
     
     init() {
-        var c = Communicator()
+        let c = Communicator()
         c.delegate = storage
         c.fetchMovieList(.nowPlaying)
     }
