@@ -96,6 +96,7 @@
 		A907F86024293C9200A84C03 /* moviedb-swift */ = {
 			isa = PBXGroup;
 			children = (
+				A907F8862429484700A84C03 /* Storage */,
 				A907F87324293EF700A84C03 /* Legacy Classes */,
 				A907F86124293C9200A84C03 /* AppDelegate.swift */,
 				A907F86324293C9200A84C03 /* SceneDelegate.swift */,
@@ -129,6 +130,13 @@
 				A907F87524293F6D00A84C03 /* moviedb-swift-Bridging-Header.h */,
 			);
 			path = "Legacy Classes";
+			sourceTree = "<group>";
+		};
+		A907F8862429484700A84C03 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		A94FA0F92423ECAD000C73E8 /* Views */ = {
