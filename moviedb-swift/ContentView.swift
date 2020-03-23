@@ -41,6 +41,28 @@ struct ContentView: View {
     
     var body: some View {
         List(storage.nowPlaying, id: \.self) { movie in
+            MovieView(movie: movie)
+        }
+    }
+    
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        
+        let c = Communicator()
+        c.delegate = storage
+        c.fetchMovieList(.nowPlaying)
+    }
+}
+
+struct MovieView: View {
+    @State var movie : Movie
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "star")
+                .frame(width: 79.0, height: 118.0)
+                .border(Color.black, width: 1)
+                .cornerRadius(10)
             VStack(alignment: .leading, spacing: 10) {
                 Text(movie.title)
                     .font(.system(size: 14))
@@ -59,12 +81,6 @@ struct ContentView: View {
                 }
             }
         }
-    }
-    
-    init() {
-        let c = Communicator()
-        c.delegate = storage
-        c.fetchMovieList(.nowPlaying)
     }
 }
 
