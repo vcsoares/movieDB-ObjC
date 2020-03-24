@@ -54,6 +54,31 @@ struct ContentView: View {
     }
 }
 
+
+class RemoteImage : ObservableObject {
+    @Published var imageData = Data()
+    
+    init(movie: Movie) {
+        if movie.poster.isEmpty {
+            URLSession.shared.dataTask(with: movie.poster_path) { [weak self] (data, response, error) in
+                guard let data = data else {
+                    print("-X-X- ERROR DOWNLOADING POSTER")
+                    
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    return
+                }
+                
+                self?.imageData = data
+            }.resume()
+        } else {
+            imageData = movie.poster
+        }
+    }
+}
+
 struct MovieView: View {
     @State var movie : Movie
     
