@@ -14,6 +14,19 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         FetchOption.popular : []
     ]
     
+    static var testMovie : Movie {
+        get {
+            let movie = Movie()
+            movie.id = 420818
+            movie.title = "The Lion King"
+            movie.genres = "Adventure, Animation, Family, Drama, Action"
+            movie.overview = "Simba idolizes his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his."
+            movie.poster_path = URL(string: "https://image.tmdb.org/t/p/w500/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg")!
+            movie.vote_average = 7.1
+            return movie
+        }
+    }
+    
     func receivedMovieList(_ json: Data, from option: FetchOption) {
         let error = NSErrorPointer(nilLiteral: ())
         let movies = Parser.movieList(fromJSON: json, error: error)
