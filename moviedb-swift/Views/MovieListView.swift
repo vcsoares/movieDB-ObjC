@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MovieListView.swift
 //  moviedb-swift
 //
 //  Created by Vinícius Chagas on 23/03/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MovieListView: View {
     @ObservedObject var storage = MovieStorage()
     
     var body: some View {
@@ -69,6 +69,6 @@ struct MovieView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MovieListView()
     }
 }
