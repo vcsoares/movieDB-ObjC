@@ -19,14 +19,8 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
             return
         }
         
-        if option == .nowPlaying {
-            DispatchQueue.main.async { [weak self] in
-                self?.nowPlaying = movies as! [Movie]
-            }
-        } else {
-            DispatchQueue.main.async { [weak self] in
-                self?.popular = movies as! [Movie]
-            }
+        DispatchQueue.main.async { [weak self] in
+            self?.movies[option] = movies as? [Movie]
         }
     }
     
@@ -39,17 +33,33 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         print(error.localizedDescription)
     }
     
-    @Published var nowPlaying : [Movie] = []
-    @Published var popular : [Movie] = []
+    @Published var movies : [FetchOption : [Movie]] = [
+        FetchOption.nowPlaying : [],
+        FetchOption.popular : []
+    ]
 }
 
 struct ContentView: View {
     @ObservedObject var storage = MovieStorage()
     
     var body: some View {
-        List(storage.nowPlaying, id: \.self) { movie in
-            MovieView(movie: movie)
-        }
+        NavigationView {
+            List {
+                Section(header: Text("Popular").font(.system(size: 17))
+                .fontWeight(.semibold)) {
+                    ForEach(storage.movies[.popular]!.prefix(2), id: \.self) { movie in
+                        MovieView(movie: movie)
+                    }
+                }
+                Section(header: Text("Now playing").font(.system(size: 17))
+                .fontWeight(.semibold)) {
+                    ForEach(storage.movies[.nowPlaying]!, id: \.self) { movie in
+                        MovieView(movie: movie)
+                    }
+                }
+            }.listStyle(GroupedListStyle())
+        .navigationBarTitle("Movies")
+        }.accentColor(.black)
     }
     
     init() {
@@ -92,7 +102,9 @@ class RemoteImage : ObservableObject {
                     return
                 }
                 
-                self?.imageData = data
+                DispatchQueue.main.async {
+                    self?.imageData = data
+                }
             }.resume()
         } else {
             imageData = movie.poster
