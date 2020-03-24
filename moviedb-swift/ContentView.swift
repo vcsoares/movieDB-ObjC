@@ -12,13 +12,20 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
     func receivedMovieList(_ json: Data, from option: FetchOption) {
         let error = NSErrorPointer(nilLiteral: ())
         let movies = Parser.movieList(fromJSON: json, error: error)
-        if error?.pointee != nil {
+        
+        if error?.pointee != nil || movies.isEmpty {
             print("-X-X- MOVIE LIST ERROR")
+            print(error!.pointee!.localizedDescription)
             return
         }
-        if !movies.isEmpty {
+        
+        if option == .nowPlaying {
             DispatchQueue.main.async { [weak self] in
                 self?.nowPlaying = movies as! [Movie]
+            }
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.popular = movies as! [Movie]
             }
         }
     }
@@ -50,6 +57,7 @@ struct ContentView: View {
         
         let c = Communicator()
         c.delegate = storage
+        c.fetchMovieList(.popular)
         c.fetchMovieList(.nowPlaying)
     }
 }
