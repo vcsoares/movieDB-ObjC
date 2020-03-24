@@ -54,6 +54,19 @@ struct ContentView: View {
     }
 }
 
+struct PosterView: View {
+    @ObservedObject private var poster : RemoteImage
+    
+    var body: some View {
+        Image(uiImage: UIImage(data: poster.imageData) ?? UIImage())
+            .resizable()
+            .cornerRadius(10)
+    }
+    
+    init(movie: Movie) {
+        poster = RemoteImage(movie: movie)
+    }
+}
 
 class RemoteImage : ObservableObject {
     @Published var imageData = Data()
@@ -84,10 +97,8 @@ struct MovieView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "star")
+            PosterView(movie: movie)
                 .frame(width: 79.0, height: 118.0)
-                .border(Color.black, width: 1)
-                .cornerRadius(10)
             VStack(alignment: .leading, spacing: 10) {
                 Text(movie.title)
                     .font(.system(size: 14))
