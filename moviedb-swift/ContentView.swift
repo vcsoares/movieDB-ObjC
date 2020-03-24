@@ -8,51 +8,18 @@
 
 import SwiftUI
 
-class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
-    func receivedMovieList(_ json: Data, from option: FetchOption) {
-        let error = NSErrorPointer(nilLiteral: ())
-        let movies = Parser.movieList(fromJSON: json, error: error)
-        
-        if error?.pointee != nil || movies.isEmpty {
-            print("-X-X- MOVIE LIST ERROR")
-            print(error!.pointee!.localizedDescription)
-            return
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.movies[option] = movies as? [Movie]
-        }
-    }
-    
-    func receivedMovieDetails(_ json: Data, for movie: Movie) {
-        print("a")
-    }
-    
-    func fetchFailedWithError(_ error: Error) {
-        print("-XXX- FETCH FAILED")
-        print(error.localizedDescription)
-    }
-    
-    @Published var movies : [FetchOption : [Movie]] = [
-        FetchOption.nowPlaying : [],
-        FetchOption.popular : []
-    ]
-}
-
 struct ContentView: View {
     @ObservedObject var storage = MovieStorage()
     
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Popular").font(.system(size: 17))
-                .fontWeight(.semibold)) {
+                Section(header: Text("Popular").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.popular]!.prefix(2), id: \.self) { movie in
                         MovieView(movie: movie)
                     }
                 }
-                Section(header: Text("Now playing").font(.system(size: 17))
-                .fontWeight(.semibold)) {
+                Section(header: Text("Now playing").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.nowPlaying]!, id: \.self) { movie in
                         MovieView(movie: movie)
                     }
@@ -69,46 +36,6 @@ struct ContentView: View {
         c.delegate = storage
         c.fetchMovieList(.popular)
         c.fetchMovieList(.nowPlaying)
-    }
-}
-
-struct PosterView: View {
-    @ObservedObject private var poster : RemoteImage
-    
-    var body: some View {
-        Image(uiImage: UIImage(data: poster.imageData) ?? UIImage())
-            .resizable()
-            .cornerRadius(10)
-    }
-    
-    init(movie: Movie) {
-        poster = RemoteImage(movie: movie)
-    }
-}
-
-class RemoteImage : ObservableObject {
-    @Published var imageData = Data()
-    
-    init(movie: Movie) {
-        if movie.poster.isEmpty {
-            URLSession.shared.dataTask(with: movie.poster_path) { [weak self] (data, response, error) in
-                guard let data = data else {
-                    print("-X-X- ERROR DOWNLOADING POSTER")
-                    
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                    
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self?.imageData = data
-                }
-            }.resume()
-        } else {
-            imageData = movie.poster
-        }
     }
 }
 
