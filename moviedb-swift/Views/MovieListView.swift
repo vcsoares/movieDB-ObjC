@@ -35,11 +35,6 @@ struct MovieListView: View {
     
     init() {
         UITableView.appearance().separatorStyle = .none
-        
-        let c = Communicator()
-        c.delegate = storage
-        c.fetchMovieList(.popular)
-        c.fetchMovieList(.nowPlaying)
     }
 }
 

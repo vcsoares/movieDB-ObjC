@@ -14,6 +14,8 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         FetchOption.popular : []
     ]
     
+    var communicator : Communicator
+    
     static var testMovie : Movie {
         get {
             let movie = Movie()
@@ -25,6 +27,14 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
             movie.vote_average = 7.1
             return movie
         }
+    }
+    
+    override init() {
+        self.communicator = Communicator()
+        super.init()
+        self.communicator.delegate = self
+        self.communicator.fetchMovieList(.popular)
+        self.communicator.fetchMovieList(.nowPlaying)
     }
     
     func receivedMovieList(_ json: Data, from option: FetchOption) {
