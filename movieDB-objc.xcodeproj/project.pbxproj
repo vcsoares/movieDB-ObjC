@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A907F86224293C9200A84C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86124293C9200A84C03 /* AppDelegate.swift */; };
 		A907F86424293C9200A84C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86324293C9200A84C03 /* SceneDelegate.swift */; };
-		A907F86624293C9200A84C03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86524293C9200A84C03 /* ContentView.swift */; };
+		A907F86624293C9200A84C03 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86524293C9200A84C03 /* MovieListView.swift */; };
 		A907F86824293C9500A84C03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A907F86724293C9500A84C03 /* Assets.xcassets */; };
 		A907F86B24293C9500A84C03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A907F86A24293C9500A84C03 /* Preview Assets.xcassets */; };
 		A907F86E24293C9500A84C03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A907F86C24293C9500A84C03 /* LaunchScreen.storyboard */; };
@@ -18,6 +18,7 @@
 		A907F885242945B400A84C03 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A907F883242944CE00A84C03 /* Movie.m */; };
 		A93D6519242A9D6F00DD8223 /* MovieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D6518242A9D6F00DD8223 /* MovieStorage.swift */; };
 		A93D651C242A9DD300DD8223 /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D651B242A9DD300DD8223 /* PosterView.swift */; };
+		A93D651E242A9FDD00DD8223 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93D651D242A9FDD00DD8223 /* MovieDetailView.swift */; };
 		A94FA0FC2423ECD3000C73E8 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A94FA0FB2423ECD3000C73E8 /* MovieTableViewCell.m */; };
 		A9892A5724253F240080848A /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9892A5624253F240080848A /* DetailsViewController.m */; };
 		A9E5D1E9241FFBF00011F151 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E5D1E8241FFBF00011F151 /* AppDelegate.m */; };
@@ -37,7 +38,7 @@
 		A907F85F24293C9200A84C03 /* moviedb-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moviedb-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A907F86124293C9200A84C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A907F86324293C9200A84C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A907F86524293C9200A84C03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A907F86524293C9200A84C03 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		A907F86724293C9500A84C03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A907F86A24293C9500A84C03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A907F86D24293C9500A84C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		A907F884242944CE00A84C03 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		A93D6518242A9D6F00DD8223 /* MovieStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorage.swift; sourceTree = "<group>"; };
 		A93D651B242A9DD300DD8223 /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
+		A93D651D242A9FDD00DD8223 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		A94FA0FA2423ECD3000C73E8 /* MovieTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
 		A94FA0FB2423ECD3000C73E8 /* MovieTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieTableViewCell.m; sourceTree = "<group>"; };
 		A9892A5524253F240080848A /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 				A907F87324293EF700A84C03 /* Legacy Classes */,
 				A907F86124293C9200A84C03 /* AppDelegate.swift */,
 				A907F86324293C9200A84C03 /* SceneDelegate.swift */,
-				A907F86524293C9200A84C03 /* ContentView.swift */,
 				A907F86724293C9500A84C03 /* Assets.xcassets */,
 				A907F86C24293C9500A84C03 /* LaunchScreen.storyboard */,
 				A907F86F24293C9500A84C03 /* Info.plist */,
@@ -149,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				A93D651B242A9DD300DD8223 /* PosterView.swift */,
+				A907F86524293C9200A84C03 /* MovieListView.swift */,
+				A93D651D242A9FDD00DD8223 /* MovieDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,9 +335,10 @@
 				A907F885242945B400A84C03 /* Movie.m in Sources */,
 				A93D6519242A9D6F00DD8223 /* MovieStorage.swift in Sources */,
 				A907F86224293C9200A84C03 /* AppDelegate.swift in Sources */,
+				A93D651E242A9FDD00DD8223 /* MovieDetailView.swift in Sources */,
 				A93D651C242A9DD300DD8223 /* PosterView.swift in Sources */,
 				A907F86424293C9200A84C03 /* SceneDelegate.swift in Sources */,
-				A907F86624293C9200A84C03 /* ContentView.swift in Sources */,
+				A907F86624293C9200A84C03 /* MovieListView.swift in Sources */,
 				A907F87F24293F9500A84C03 /* Parser.m in Sources */,
 				A907F87E24293F9500A84C03 /* Communicator.m in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MovieListView.swift
 //  moviedb-swift
 //
 //  Created by Vinícius Chagas on 23/03/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MovieListView: View {
     @ObservedObject var storage = MovieStorage()
     
     var body: some View {
@@ -16,12 +16,16 @@ struct ContentView: View {
             List {
                 Section(header: Text("Popular").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.popular]!.prefix(2), id: \.self) { movie in
-                        MovieView(movie: movie)
+                        NavigationLink(destination: MovieDetailView(movie: movie, storage: self.storage)) {
+                            MovieView(movie: movie)
+                        }
                     }
                 }
                 Section(header: Text("Now playing").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.nowPlaying]!, id: \.self) { movie in
-                        MovieView(movie: movie)
+                        NavigationLink(destination: MovieDetailView(movie: movie, storage: self.storage)) {
+                            MovieView(movie: movie)
+                        }
                     }
                 }
             }.listStyle(GroupedListStyle())
@@ -31,11 +35,6 @@ struct ContentView: View {
     
     init() {
         UITableView.appearance().separatorStyle = .none
-        
-        let c = Communicator()
-        c.delegate = storage
-        c.fetchMovieList(.popular)
-        c.fetchMovieList(.nowPlaying)
     }
 }
 
@@ -69,6 +68,6 @@ struct MovieView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MovieListView()
     }
 }
