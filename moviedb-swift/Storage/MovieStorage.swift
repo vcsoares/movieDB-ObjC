@@ -14,7 +14,7 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         FetchOption.popular : []
     ]
     
-    var communicator : Communicator
+    private var communicator : Communicator
     
     static var testMovie : Movie {
         get {
@@ -43,7 +43,7 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         }
     }
     
-    func receivedMovieList(_ json: Data, from option: FetchOption) {
+    internal func receivedMovieList(_ json: Data, from option: FetchOption) {
         let error = NSErrorPointer(nilLiteral: ())
         let movies = Parser.movieList(fromJSON: json, error: error)
         
@@ -58,7 +58,7 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         }
     }
     
-    func receivedMovieDetails(_ json: Data, for movie: Movie) {
+    internal func receivedMovieDetails(_ json: Data, for movie: Movie) {
         let error = NSErrorPointer(nilLiteral: ())
         Parser.details(for: movie, from: json, error: error)
         
@@ -69,7 +69,7 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         }
     }
     
-    func fetchFailedWithError(_ error: Error) {
+    internal func fetchFailedWithError(_ error: Error) {
         print("-XXX- FETCH FAILED")
         print(error.localizedDescription)
     }
