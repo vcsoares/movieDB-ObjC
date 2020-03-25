@@ -16,14 +16,14 @@ struct MovieListView: View {
             List {
                 Section(header: Text("Popular").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.popular]!.prefix(2), id: \.self) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie)) {
+                        NavigationLink(destination: MovieDetailView(movie: movie, storage: self.storage)) {
                             MovieView(movie: movie)
                         }
                     }
                 }
                 Section(header: Text("Now playing").font(.system(size: 17)).fontWeight(.semibold)) {
                     ForEach(storage.movies[.nowPlaying]!, id: \.self) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie)) {
+                        NavigationLink(destination: MovieDetailView(movie: movie, storage: self.storage)) {
                             MovieView(movie: movie)
                         }
                     }

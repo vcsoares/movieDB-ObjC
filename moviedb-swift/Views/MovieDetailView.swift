@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    @State var movie : Movie
+    @State private var movie : Movie
+    @State private var storage : MovieStorage
     
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -44,6 +45,12 @@ struct MovieDetailView: View {
             Spacer()
         }.navigationBarTitle("Movie", displayMode: .inline)
             .padding(.all, 24)
+    }
+    
+    init(movie: Movie, storage: MovieStorage = MovieStorage()) {
+        self._movie = .init(initialValue: movie)
+        self._storage = .init(initialValue: storage)
+        self.storage.detailsFor(movie: self.movie)
     }
 }
 

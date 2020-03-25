@@ -37,6 +37,12 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
         self.communicator.fetchMovieList(.nowPlaying)
     }
     
+    func detailsFor(movie: Movie) {
+        if movie.genres.isEmpty {
+            self.communicator.fetchMovieDetails(movie)
+        }
+    }
+    
     func receivedMovieList(_ json: Data, from option: FetchOption) {
         let error = NSErrorPointer(nilLiteral: ())
         let movies = Parser.movieList(fromJSON: json, error: error)
@@ -53,7 +59,14 @@ class MovieStorage : NSObject, ObservableObject, CommunicatorDelegate {
     }
     
     func receivedMovieDetails(_ json: Data, for movie: Movie) {
-        print("a")
+        let error = NSErrorPointer(nilLiteral: ())
+        Parser.details(for: movie, from: json, error: error)
+        
+        if error?.pointee != nil || movie.genres.isEmpty {
+            print("-X-X- MOVIE DETAILS ERROR")
+            print(error!.pointee!.localizedDescription)
+            return
+        }
     }
     
     func fetchFailedWithError(_ error: Error) {
