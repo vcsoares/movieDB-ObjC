@@ -12,7 +12,7 @@ class RemoteImage : ObservableObject {
     @Published var imageData = Data()
     
     init(movie: Movie) {
-        if movie.poster.isEmpty {
+        if movie.poster.isEmpty || self.imageData.isEmpty {
             URLSession.shared.dataTask(with: movie.poster_path) { [weak self] (data, response, error) in
                 guard let data = data else {
                     print("-X-X- ERROR DOWNLOADING POSTER")
@@ -25,6 +25,7 @@ class RemoteImage : ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
+                    movie.poster = data
                     self?.imageData = data
                 }
             }.resume()
