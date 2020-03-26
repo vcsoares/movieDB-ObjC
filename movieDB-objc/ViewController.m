@@ -170,7 +170,11 @@
     }
     
     if (movie != nil) {
-        [self.communicator fetchMovieDetails:movie];
+        if (movie.genres == nil) {
+            [self.communicator fetchMovieDetails:movie];
+        } else {
+            [self performSegueWithIdentifier:@"ShowMovie" sender:movie];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
