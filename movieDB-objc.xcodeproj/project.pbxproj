@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A901793D242D42E6006153C9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A901793C242D42E6006153C9 /* SearchViewController.m */; };
 		A907F86224293C9200A84C03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86124293C9200A84C03 /* AppDelegate.swift */; };
 		A907F86424293C9200A84C03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86324293C9200A84C03 /* SceneDelegate.swift */; };
 		A907F86624293C9200A84C03 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907F86524293C9200A84C03 /* MovieListView.swift */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A901793B242D42E6006153C9 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		A901793C242D42E6006153C9 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		A907F85F24293C9200A84C03 /* moviedb-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moviedb-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A907F86124293C9200A84C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A907F86324293C9200A84C03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				A9E5D1EE241FFBF00011F151 /* ViewController.m */,
 				A9892A5524253F240080848A /* DetailsViewController.h */,
 				A9892A5624253F240080848A /* DetailsViewController.m */,
+				A901793B242D42E6006153C9 /* SearchViewController.h */,
+				A901793C242D42E6006153C9 /* SearchViewController.m */,
 				A9E5D1F0241FFBF00011F151 /* Main.storyboard */,
 				A9E5D1F3241FFBF40011F151 /* Assets.xcassets */,
 				A9E5D1F5241FFBF40011F151 /* LaunchScreen.storyboard */,
@@ -356,6 +361,7 @@
 				A94FA0FC2423ECD3000C73E8 /* MovieTableViewCell.m in Sources */,
 				A9E5D2142422B2970011F151 /* Genre.m in Sources */,
 				A9E5D1FA241FFBF40011F151 /* main.m in Sources */,
+				A901793D242D42E6006153C9 /* SearchViewController.m in Sources */,
 				A9E5D21124216CF90011F151 /* Parser.m in Sources */,
 				A9E5D1EC241FFBF00011F151 /* SceneDelegate.m in Sources */,
 			);
