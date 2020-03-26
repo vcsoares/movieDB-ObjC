@@ -37,6 +37,8 @@
     
     if (movie.poster != nil) {
         [self.movieImageView setImage:[UIImage imageWithData:movie.poster]];
+    } else if ([movie.poster_path.absoluteString isEqualToString:@""]) {
+        [self.movieImageView setImage:[UIImage systemImageNamed:@"camera.fill"]];
     } else {
         NSURLSessionDownloadTask* poster_download = [[NSURLSession sharedSession] downloadTaskWithURL:movie.poster_path completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             [movie setPoster:[NSData dataWithContentsOfURL:location]];
