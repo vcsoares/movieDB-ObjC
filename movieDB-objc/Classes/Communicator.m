@@ -77,6 +77,7 @@
 -(void)searchMoviesWith:(NSString *)keywords {
     [[NSURLSession sharedSession] invalidateAndCancel];
     
+    keywords = [keywords stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet];
     NSString *url_string = [NSString stringWithFormat:SEARCH_URL, API_KEY, keywords];
     NSURL *url = [[NSURL alloc] initWithString:url_string];
     NSLog(@"%@", url_string);
