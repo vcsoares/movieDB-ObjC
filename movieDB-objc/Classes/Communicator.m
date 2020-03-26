@@ -15,6 +15,7 @@
 #define POPULAR_URL @"https://api.themoviedb.org/3/movie/popular?api_key=%@"
 #define GENRE_URL @"https://api.themoviedb.org/3/genre/movie/list?api_key=%@"
 #define DETAILS_URL @"https://api.themoviedb.org/3/movie/%@?api_key=%@"
+#define SEARCH_URL @"https://api.themoviedb.org/3/search/movie?api_key=%@&query=%@"
 
 @implementation Communicator
 
@@ -67,6 +68,30 @@
             } else {
                 NSLog(@"--V-- FETCH SUCCESS");
                 [self.delegate receivedMovieList:data from:option];
+            }
+        }];
+
+    [task resume];
+}
+
+-(void)searchMoviesWith:(NSString *)keywords {
+    [[NSURLSession sharedSession] invalidateAndCancel];
+    
+    NSString *url_string = [NSString stringWithFormat:SEARCH_URL, API_KEY, keywords];
+    NSURL *url = [[NSURL alloc] initWithString:url_string];
+    NSLog(@"%@", url_string);
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+        ^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                NSLog(@"--X-- SEARCH ERROR");
+                [self.delegate fetchFailedWithError:error];
+            } else {
+                NSLog(@"--V-- SEARCH SUCCESS");
+                [self.delegate receivedMovieList:data from:FetchSearch];
             }
         }];
 
