@@ -13,14 +13,17 @@
 #import "Movie.h"
 #import "MovieTableViewCell.h"
 #import "DetailsViewController.h"
+#import "SearchViewController.h"
 
-@interface ViewController () <CommunicatorDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ViewController ()
+<CommunicatorDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 
 @property Communicator* communicator;
 @property NSArray* popularMovieList;
 @property NSArray* nowPlayingMovieList;
 
 @property (weak, nonatomic) IBOutlet UITableView *moviesTableView;
+@property SearchViewController* searchViewController;
 
 @end
 
@@ -37,7 +40,10 @@
     self.moviesTableView.delegate = self;
     self.moviesTableView.dataSource = self;
     
-    UISearchController* searchController = [[UISearchController alloc] init];
+    self.searchViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Search"];
+    
+    UISearchController* searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchViewController];
+    searchController.searchResultsUpdater = self;
     self.navigationItem.searchController = searchController;
 }
 
@@ -74,9 +80,13 @@
             self.popularMovieList = movies;
             break;
             
-        default:
+        case FetchNowPlaying:
             NSLog(@"-VVV- FETCH NOW PLAYING SUCCESS");
             self.nowPlayingMovieList = movies;
+            break;
+            
+        default:
+            NSLog(@"-!!!- UNSUPPORTED FETCH OPTION");
             break;
     }
     
@@ -160,7 +170,11 @@
     }
     
     if (movie != nil) {
-        [self.communicator fetchMovieDetails:movie];
+        if (movie.genres == nil) {
+            [self.communicator fetchMovieDetails:movie];
+        } else {
+            [self performSegueWithIdentifier:@"ShowMovie" sender:movie];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -196,6 +210,13 @@
     [header addSubview:label];
     
     return header;
+}
+
+#pragma mark - Search Results Updater
+- (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
+    if ([searchController.searchBar.text length] >= 3) {
+        [self.searchViewController.communicator searchMoviesWith:searchController.searchBar.text];
+    }
 }
 
 @end

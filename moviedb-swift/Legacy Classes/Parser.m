@@ -33,14 +33,9 @@
         for (NSString *key in movie_dict) {
             if ([movie respondsToSelector:NSSelectorFromString(key)]) {
                 if ([key isEqualToString:@"poster_path"]) {
-                    if ([[movie_dict valueForKey:key] isKindOfClass:[NSString class]]) {
-                        NSString* pictureURL = [BASE_IMG_URL stringByAppendingString:[movie_dict valueForKey:key]];
-                        NSLog(@"--!-- PICTURE URL: %@", pictureURL);
-                        [movie setValue:[NSURL URLWithString:pictureURL] forKey:key];
-                    } else {
-                        NSLog(@"--!-- PICTURE URL EMPTY");
-                        [movie setValue:[NSURL URLWithString:@""] forKey:key];
-                    }
+                    NSString* pictureURL = [BASE_IMG_URL stringByAppendingString:[movie_dict valueForKey:key]];
+                    NSLog(@"--!-- PICTURE URL: %@", pictureURL);
+                    [movie setValue:[NSURL URLWithString:pictureURL] forKey:key];
                 } else {
                     [movie setValue:[movie_dict valueForKey:key] forKey:key];
                 }
