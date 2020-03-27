@@ -7,7 +7,7 @@ This project's main purpose was to learn the Objective-C language and its charac
 
 Since Objective-C is still being used in production to this day, knowing your way through the language's intricacies is a valuable skill set an iOS developer can have.
 
-Besides that, having to deal with legacy Objective-C libraries and frameworks in modern Swift projects is not at all uncommon. With this in mind, there's also a second build target that uses part of the previously written Objective-C code, abridging it into a modern SwiftUI client.
+Besides that, having to deal with legacy Objective-C libraries and frameworks in modern Swift projects is not at all uncommon. With this in mind, there's also a second build target that uses part of the previously written Objective-C code, exposing it to a modern SwiftUI client.
 
 ## Structure
 This project has 2 build targets, aptly titled **moviedb-objc** and **moviedb-swift**.
