@@ -21,7 +21,7 @@ As previously said, the Objective-C target is entirely written in that language.
 If none of these steps fail along the way, the processed data will be returned as an array of **Movie** objects back to the Delegate, which can do whatever is more convenient with it (e.g. displaying those movies in a TableView).
 
 ### Usage in a Swift project
-The benefits of communicating through Delegate protocols is that it can keep service logic and display logic largely independent from each other. This makes bridging the service classes written in Objective-C into a Swift (and, in this case, SwiftUI) project relatively easy.
+One of the benefits of communicating through Delegate protocols is that we can keep service logic and display logic largely independent from each other. This makes bridging the service classes written in Objective-C into a Swift (and, in this case, SwiftUI) project relatively easy.
 
 After exposing the necessary Objective-C headers to our project via a bridging header, all methods we've previously implemented work out of the box. However, if we want to use them in the context of a SwiftUI application, a few extra things need to be taken care of:
 
